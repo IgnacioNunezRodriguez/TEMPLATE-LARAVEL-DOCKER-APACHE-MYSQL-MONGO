@@ -1,3 +1,3 @@
 FROM mongo:latest
-COPY ./mongodb/mongod.conf /etc/mongod.conf
+COPY ./mongodb/loadFiles.sh /docker-entrypoint-initdb.d/
 EXPOSE 27017

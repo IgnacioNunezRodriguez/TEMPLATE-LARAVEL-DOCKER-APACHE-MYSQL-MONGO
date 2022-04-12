@@ -4,8 +4,6 @@ services:
     container_name: ${projectname}_apachephp
     build:
       context: ${buildcontext}
-      args:
-        uid: ${UID}
       dockerfile: ${dockerfile}
     environment:
       - APACHE_RUN_USER=#${UID}
@@ -24,19 +22,20 @@ services:
     build:
       context: ./db
       dockerfile: mongodb/mongodb.dockerfile
+
+    working_dir: /data/db
     command:
       - '--auth'
-      - '-f'
-      - '/etc/mongod.conf'
-      - '--logpath'
-      - '/var/log/mongodb.log'
-    environment: 
+    environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+      - MONGO_INITDB_COLLECTION=${MONGO_TAGS_COLLECTION}
     ports:
       - 27017:27017
     volumes:
-      - ../mongodata:/data
+      - ../mongodata:/data/db
+      - ./db/mongodb/data:/data/extdata
       - ../logs/mongo:/var/log/mongodb
     networks:
       - projectnetwork

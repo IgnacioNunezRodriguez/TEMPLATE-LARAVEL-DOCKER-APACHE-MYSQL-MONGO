@@ -5,8 +5,8 @@
     "version": "0.2.0",
     "compounds": [
         {
-            "name": "Depurar",
-            "configurations": ["Listen for XDebug", "Launch Chrome"]
+            "name": "Depurar Laravel",
+            "configurations": ["Listen for XDebug", "Launch Edge"]
         }
     ],
     "configurations": [
@@ -14,22 +14,22 @@
             "name": "Launch Edge",
             "request": "launch",
             "type": "pwa-msedge",
-            "url": "http://laravel1.itec",
-            "webRoot": "${workspaceFolder}/larave1"
+            "url": "http://gshtml5.itec",
+            "webRoot": "${workspaceFolder}/gshtml5",
         },
         {
             "type": "firefox",
             "request": "launch",
             "name": "Firefox",
-            "url": "http://laravel1.itec",
+            "url": "http://gshtml5.itec",
         },
         
         {
             "name": "Launch Chrome",
             "request": "launch",
             "type": "pwa-chrome",
-            "url": "http://laravel1.itec",
-            "webRoot": "${workspaceFolder}/laravel1"
+            "url": "http://gshtml5.itec",
+            "webRoot": "${workspaceFolder}/gshtml5"
         },
         {
             "name": "Listen for XDebug",
@@ -38,7 +38,7 @@
             "port": 9001,
             "log": true,
             "pathMappings": {
-                "/var/www/html": "${workspaceFolder}/laravel1"
+                "/var/www/html": "${workspaceFolder}/gshtml5"
             },
             "xdebugSettings": {
                 "max_data": 65535,

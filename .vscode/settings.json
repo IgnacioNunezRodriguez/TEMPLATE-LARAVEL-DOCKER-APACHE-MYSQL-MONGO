@@ -13,5 +13,9 @@
     "githubPullRequests.remotes": [
         "origingithub",
         "upstream"
-    ]
+    ],
+    "files.associations": {
+        "*.env.*": "dotenv",
+        "*dockerfile*": "dockerfile"
+    }
 }

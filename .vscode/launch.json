@@ -14,22 +14,22 @@
             "name": "Launch Edge",
             "request": "launch",
             "type": "pwa-msedge",
-            "url": "http://gshtml5.itec",
-            "webRoot": "${workspaceFolder}/gshtml5",
+            "url": "http://{url}",
+            "webRoot": "${workspaceFolder}/src",
         },
         {
             "type": "firefox",
             "request": "launch",
             "name": "Firefox",
-            "url": "http://gshtml5.itec",
+            "url": "http://{url}",
         },
         
         {
             "name": "Launch Chrome",
             "request": "launch",
             "type": "pwa-chrome",
-            "url": "http://gshtml5.itec",
-            "webRoot": "${workspaceFolder}/gshtml5"
+            "url": "http://{url}",
+            "webRoot": "${workspaceFolder}/src"
         },
         {
             "name": "Listen for XDebug",
@@ -38,7 +38,7 @@
             "port": 9001,
             "log": true,
             "pathMappings": {
-                "/var/www/html": "${workspaceFolder}/gshtml5"
+                "/var/www/html": "${workspaceFolder}/src"
             },
             "xdebugSettings": {
                 "max_data": 65535,

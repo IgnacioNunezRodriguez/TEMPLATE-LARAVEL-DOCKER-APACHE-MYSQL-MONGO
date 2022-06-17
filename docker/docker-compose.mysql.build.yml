@@ -15,7 +15,7 @@ services:
     ports:
       - ${extport}:${innerport}
     volumes:
-      - ../${projectname}:/var/www/html
+      - ../src:/var/www/html
       - ../logs:/var/log
     networks:
       - projectnetwork

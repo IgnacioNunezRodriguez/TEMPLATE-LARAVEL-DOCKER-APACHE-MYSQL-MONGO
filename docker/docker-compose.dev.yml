@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-  apache:
+  apachephp:
     container_name: ${projectname}_apachephp
     build:
       context: ${buildcontext}

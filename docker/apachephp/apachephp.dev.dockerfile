@@ -11,8 +11,8 @@ RUN apt update && apt-get install -y \
     pkg-config \
     libssl-dev
 
-COPY virtualhost.conf /etc/apache2/sites-available/virtualhost.conf
-COPY apache2.conf /etc/apache2/apache2.conf
+COPY ../00.apachecommonconfig/virtualhost.conf /etc/apache2/sites-available/virtualhost.conf
+COPY ../00.apachecommonconfig/apache2.conf /etc/apache2/apache2.conf
 RUN pecl install -f xdebug && docker-php-ext-enable xdebug
 COPY php.ini-development /usr/local/etc/php/php.ini
 COPY xdebug.orig.ini /usr/local/etc/php/conf.d/xdebug.orig.ini

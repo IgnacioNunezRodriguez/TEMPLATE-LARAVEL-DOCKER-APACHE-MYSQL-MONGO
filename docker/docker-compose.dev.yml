@@ -3,7 +3,7 @@ services:
   apachephp:
     container_name: ${projectname}_apachephp
     build:
-      context: ${buildcontext}
+      context: ./
       dockerfile: ${dockerfile}
     environment:
       - APACHE_RUN_USER=#${UID}

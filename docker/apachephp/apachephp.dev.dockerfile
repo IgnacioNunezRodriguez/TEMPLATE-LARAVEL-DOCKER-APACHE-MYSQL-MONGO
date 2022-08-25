@@ -11,11 +11,11 @@ RUN apt update && apt-get install -y \
     pkg-config \
     libssl-dev
 
-COPY ../00.apachecommonconfig/virtualhost.conf /etc/apache2/sites-available/virtualhost.conf
-COPY ../00.apachecommonconfig/apache2.conf /etc/apache2/apache2.conf
+COPY 00.apachecommonconfig/virtualhost.conf /etc/apache2/sites-available/virtualhost.conf
+COPY 00.apachecommonconfig/apache2.conf /etc/apache2/apache2.conf
 RUN pecl install -f xdebug && docker-php-ext-enable xdebug
-COPY php.ini-development /usr/local/etc/php/php.ini
-COPY xdebug.orig.ini /usr/local/etc/php/conf.d/xdebug.orig.ini
+COPY apachephp/php.ini-development /usr/local/etc/php/php.ini
+COPY apachephp/xdebug.orig.ini /usr/local/etc/php/conf.d/xdebug.orig.ini
 #RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini
 RUN cat /usr/local/etc/php/conf.d/xdebug.orig.ini >> /usr/local/etc/php/conf.d/docker-php-ext-debug.ini
 RUN rm /usr/local/etc/php/conf.d/xdebug.orig.ini 

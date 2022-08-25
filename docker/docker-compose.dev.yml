@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   apachephp:
-    container_name: ${projectname}_apachephp
+    container_name: DEV_${projectname}_apachephp
     build:
       context: ./
       dockerfile: ${dockerfile}
@@ -18,7 +18,7 @@ services:
     networks:
       - projectnetwork
   mongo:
-    container_name: ${projectname}_mongo
+    container_name: DEV_${projectname}_mongo
     build:
       context: ./db
       dockerfile: mongodb/mongodb.dockerfile
@@ -40,7 +40,7 @@ services:
     networks:
       - projectnetwork
   mysql:
-      container_name: ${projectname}_mysql
+      container_name: DEV_${projectname}_mysql
       build:
         context: ./db
         dockerfile: mysql/mysql.dev.dockerfile

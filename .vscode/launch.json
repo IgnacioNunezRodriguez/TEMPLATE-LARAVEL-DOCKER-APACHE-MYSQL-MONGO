@@ -14,21 +14,21 @@
             "name": "Launch Edge",
             "request": "launch",
             "type": "pwa-msedge",
-            "url": "http://{url}",
+            "url": "http://laravel1.itec",
             "webRoot": "${workspaceFolder}/src",
         },
         {
             "type": "firefox",
             "request": "launch",
             "name": "Firefox",
-            "url": "http://{url}",
+            "url": "http://laravel1.itec",
         },
         
         {
             "name": "Launch Chrome",
             "request": "launch",
             "type": "pwa-chrome",
-            "url": "http://{url}",
+            "url": "http://laravel1.itec",
             "webRoot": "${workspaceFolder}/src"
         },
         {

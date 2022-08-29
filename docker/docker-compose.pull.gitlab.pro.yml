@@ -1,0 +1,56 @@
+version: '3.3'
+services:
+  apachephp:
+    container_name: pro_${projectname}_apachephp
+    image: registry.gitlab.com/ignacio.nunez.rodriguez/template-laravel-docker-apache-mysql-mongo/pro_laravel1_apachephp:latest
+    environment:
+      - APACHE_RUN_USER=#${UID}
+      - APACHE_RUN_GROUP=#${GID}      
+      - APP_URL=${url}
+    working_dir: /var/www/html
+    ports:
+      - ${extport}:${innerport}
+    volumes:
+      - ../logs:/var/log
+    networks:
+      - projectnetwork
+  mongo:
+    container_name: pro_${projectname}_mongo
+    image: registry.gitlab.com/ignacio.nunez.rodriguez/template-laravel-docker-apache-mysql-mongo/pro_laravel1_mongo:latest
+
+    working_dir: /data/db
+    command:
+      - '--auth'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+      - MONGO_INITDB_COLLECTION=${MONGO_TAGS_COLLECTION}
+    ports:
+      - 27017:27017
+    volumes:
+      - ../mongodata:/data/db
+      - ./db/mongodb/data:/data/extdata
+      - ../logs/mongo:/var/log/mongodb
+    networks:
+      - projectnetwork
+  mysql:
+      container_name: pro_${projectname}_mysql
+      image: registry.gitlab.com/ignacio.nunez.rodriguez/template-laravel-docker-apache-mysql-mongo/pro_laravel1_mysql:latest
+      environment: 
+        - MYSQL_ROOT_USER=${MYSQL_ROOT_USER}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_OUTPORT=${MYSQL_OUTPORT}
+      ports:
+        - "${MYSQL_OUTPORT}:3306"
+      volumes:
+        - ./db/sqlscript:/docker-entrypoint-initdb.d/
+      command: --default-authentication-plugin=mysql_native_password
+      networks:
+        - projectnetwork
+networks:
+  projectnetwork:
+    driver: bridge

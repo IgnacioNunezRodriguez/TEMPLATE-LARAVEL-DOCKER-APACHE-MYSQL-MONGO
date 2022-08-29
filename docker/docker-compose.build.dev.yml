@@ -1,11 +1,12 @@
-version: '3.3'
+version: '3.9'
 services:
   apachephp:
-    container_name: pro_${projectname}_apachephp
-    image: ${projectname}/pro_${projectname}_apachephp
+    container_name: dev_${projectname}_apachephp
+    image: dev_${projectname}_apachephp
     build:
-      context: ../
+      context: ./
       dockerfile: ${dockerfile}
+
     environment:
       - APACHE_RUN_USER=#${UID}
       - APACHE_RUN_GROUP=#${GID}      
@@ -14,11 +15,13 @@ services:
     ports:
       - ${extport}:${innerport}
     volumes:
+      - ../src:/var/www/html
       - ../logs:/var/log
     networks:
       - projectnetwork
   mongo:
-    container_name: pro_${projectname}_mongo
+    container_name: dev_${projectname}_mongo
+    image: dev_${projectname}_mongo
     build:
       context: ./db
       dockerfile: mongodb/mongodb.dockerfile
@@ -40,12 +43,11 @@ services:
     networks:
       - projectnetwork
   mysql:
-      container_name: pro_${projectname}_mysql
-      image: ${projectname}/pro_${projectname}_mysql
+      container_name: dev_${projectname}_mysql
+      image: dev_${projectname}_mysql
       build:
-        context: ../
-        dockerfile: docker/db/mysql/mysql.pro.dockerfile
-
+        context: ./db
+        dockerfile: mysql/mysql.dev.dockerfile
       environment: 
         - MYSQL_ROOT_USER=${MYSQL_ROOT_USER}
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}

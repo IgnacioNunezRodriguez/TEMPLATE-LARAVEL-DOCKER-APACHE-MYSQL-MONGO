@@ -19,10 +19,10 @@ services:
       - projectnetwork
   mongo:
     container_name: pro_${projectname}_mongo
+    image: pro_${projectname}_mongo
     build:
-      context: ./db
-      dockerfile: mongodb/mongodb.dockerfile
-
+      context: ./
+      dockerfile: ./db/mongodb/mongodb.dockerfile
     working_dir: /data/db
     command:
       - '--auth'
@@ -35,7 +35,7 @@ services:
       - 27017:27017
     volumes:
       - ../mongodata:/data/db
-      - ./db/mongodb/data:/data/extdata
+      - ./docker/db/mongodb/data:/data/extdata
       - ../logs/mongo:/var/log/mongodb
     networks:
       - projectnetwork

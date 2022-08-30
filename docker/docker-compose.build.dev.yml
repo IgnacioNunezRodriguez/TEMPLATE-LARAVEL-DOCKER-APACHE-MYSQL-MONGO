@@ -6,7 +6,6 @@ services:
     build:
       context: ./
       dockerfile: ${dockerfile}
-
     environment:
       - APACHE_RUN_USER=#${UID}
       - APACHE_RUN_GROUP=#${GID}      
@@ -23,9 +22,8 @@ services:
     container_name: dev_${projectname}_mongo
     image: dev_${projectname}_mongo
     build:
-      context: ./db
-      dockerfile: mongodb/mongodb.dockerfile
-
+      context: ./
+      dockerfile: ./db/mongodb/mongodb.dockerfile
     working_dir: /data/db
     command:
       - '--auth'
@@ -38,7 +36,7 @@ services:
       - 27017:27017
     volumes:
       - ../mongodata:/data/db
-      - ./db/mongodb/data:/data/extdata
+      - ./docker/db/mongodb/data:/data/extdata
       - ../logs/mongo:/var/log/mongodb
     networks:
       - projectnetwork
